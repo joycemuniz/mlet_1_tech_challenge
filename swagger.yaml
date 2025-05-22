@@ -1,0 +1,160 @@
+openapi: 3.0.0
+info:
+  title: API de Dados Vitivinícolas
+  version: "1.0"
+  description: |
+    API para consulta de dados vitivinícolas de produção, processamento, comercialização, importação e exportação.
+
+    Site oficial: http://vitibrasil.cnpuv.embrapa.br/
+
+    Todas as rotas exigem autenticação básica.
+
+    **Integrantes:**
+    - Joyce Muniz de Oliveira | RM: 364278 | joyce.muniz@hotmail.com
+    - Laís Lobo Teixeira | RM: 364278 | kyliegomez120.n@outlook.com
+    - Bruno Oliveira Fermino | RM: 364278 | of.bruno9@hotmail.com
+    - Victor Rodrigues Linhati | RM: 364278 | victor_linhati@hotmail.com
+  contact:
+    name: Equipe Vitivinícola
+    email: joyce.muniz@hotmail.com
+
+servers:
+  - url: http://localhost:5000
+
+security:
+  - basicAuth: []
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+
+  parameters:
+    AnoInicio:
+      name: ano_inicio
+      in: query
+      description: Ano inicial para a consulta.
+      required: false
+      schema:
+        type: integer
+        default: 1970
+    AnoFim:
+      name: ano_fim
+      in: query
+      description: Ano final para a consulta.
+      required: false
+      schema:
+        type: integer
+        default: 2025
+
+paths:
+
+  /:
+    get:
+      summary: Endpoint principal
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Retorna mensagem de boas-vindas.
+
+  /producao:
+    get:
+      summary: Consulta dados de produção filtrados
+      security:
+        - basicAuth: []
+      parameters:
+        - $ref: '#/components/parameters/AnoInicio'
+        - $ref: '#/components/parameters/AnoFim'
+      responses:
+        '200':
+          description: Dados de produção no intervalo de anos.
+        '400':
+          description: Erro de validação de parâmetros.
+
+  /processamento/{categoria}:
+    get:
+      summary: Consulta dados de processamento por categoria
+      security:
+        - basicAuth: []
+      parameters:
+        - name: categoria
+          in: path
+          description: Categoria de processamento.
+          required: true
+          schema:
+            type: string
+            enum: [viniferas, americanas_hibridas, uvas_mesa, sem_classificacao]
+        - $ref: '#/components/parameters/AnoInicio'
+        - $ref: '#/components/parameters/AnoFim'
+      responses:
+        '200':
+          description: Dados de processamento.
+        '400':
+          description: Categoria inválida ou erro de parâmetros.
+
+  /comercializacao/all:
+    get:
+      summary: Consulta completa de dados de comercialização
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Todos os dados de comercialização.
+
+  /comercializacao:
+    get:
+      summary: Consulta filtrada de dados de comercialização
+      security:
+        - basicAuth: []
+      parameters:
+        - $ref: '#/components/parameters/AnoInicio'
+        - $ref: '#/components/parameters/AnoFim'
+      responses:
+        '200':
+          description: Dados de comercialização no intervalo.
+        '400':
+          description: Erro de validação de parâmetros.
+
+  /importacao/{categoria}:
+    get:
+      summary: Consulta dados de importação por categoria
+      security:
+        - basicAuth: []
+      parameters:
+        - name: categoria
+          in: path
+          description: Categoria de importação.
+          required: true
+          schema:
+            type: string
+            enum: [vinhos_mesa, espumantes, uvas_frescas, uvas_passas, sucos]
+        - $ref: '#/components/parameters/AnoInicio'
+        - $ref: '#/components/parameters/AnoFim'
+      responses:
+        '200':
+          description: Dados de importação.
+        '400':
+          description: Categoria inválida ou erro de parâmetros.
+
+  /exportacao/{categoria}:
+    get:
+      summary: Consulta dados de exportação por categoria
+      security:
+        - basicAuth: []
+      parameters:
+        - name: categoria
+          in: path
+          description: Categoria de exportação.
+          required: true
+          schema:
+            type: string
+            enum: [vinhos_mesa, espumantes, uvas_frescas, sucos]
+        - $ref: '#/components/parameters/AnoInicio'
+        - $ref: '#/components/parameters/AnoFim'
+      responses:
+        '200':
+          description: Dados de exportação.
+        '400':
+          description: Categoria inválida ou erro de parâmetros.
