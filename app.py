@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, request
+from config import Config
 from flasgger import Swagger
-from auth import auth
+from flask_jwt_extended import jwt_required
+from auth import auth_bp, db, jwt
 from scrapper.exportacao import coletar_dados_exportacao
 from scrapper.importacao import coletar_dados_importacao
 from scrapper.producao import coletar_dados_producao
@@ -14,10 +16,16 @@ app.config['SWAGGER'] = {
     'uiversion': 3
 }
 
+app.config.from_object(Config)
+
+db.init_app(app)
+jwt.init_app(app)
+
+app.register_blueprint(auth_bp, url_prefix='/auth')
+
 swagger = Swagger(app)
 
 @app.route('/')
-@auth.login_required
 def home():
     """
     Endpoint principal.
@@ -29,7 +37,7 @@ def home():
     return "Olá, seja bem vindo a API de dados Vitivinícolas!"
 
 @app.route('/producao', methods=['GET'])
-@auth.login_required
+@jwt_required()
 def get_dados_producao_filtrado():
     """
     Consulta dados de produção. Para melhorar a performance utilize os parâmetros de datas.
@@ -62,7 +70,7 @@ def get_dados_producao_filtrado():
         return jsonify({"erro": "Parâmetros de ano inválidos. Use inteiros para ano_inicio e ano_fim."}), 400
 
 @app.route('/processamento/<categoria>', methods=['GET'])
-@auth.login_required
+@jwt_required()
 def get_dados_processamento(categoria):
     """
     Consulta dados de processamento por categoria. Para melhorar a performance utilize também os parâmetros de datas.
@@ -113,7 +121,7 @@ def get_dados_processamento(categoria):
     return jsonify(data)
 
 @app.route('/comercializacao', methods=['GET'])
-@auth.login_required
+@jwt_required()
 def get_dados_comercializacao_2():
     """
     Consulta de dados de comercialização. Para melhorar a performance utilize os parâmetros de datas.
@@ -146,7 +154,7 @@ def get_dados_comercializacao_2():
         return jsonify({"erro": "Parâmetros de ano inválidos. Use inteiros para ano_inicio e ano_fim."}), 400
 
 @app.route('/importacao/<categoria>', methods=['GET'])
-@auth.login_required
+@jwt_required()
 def get_dados_importacao(categoria):
     """
     Consulta dados de importação por categoria. Para melhorar a performance utilize também os parâmetros de datas.
@@ -198,7 +206,7 @@ def get_dados_importacao(categoria):
     return jsonify(data)
 
 @app.route('/exportacao/<categoria>', methods=['GET'])
-@auth.login_required
+@jwt_required()
 def get_dados_exportacao(categoria):
     """
     Consulta dados de exportação por categoria. Para melhorar a performance utilize também os parâmetros de datas.
@@ -249,5 +257,7 @@ def get_dados_exportacao(categoria):
     return jsonify(data)
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
 

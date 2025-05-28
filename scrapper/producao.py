@@ -57,7 +57,7 @@ def raspar_dados_por_ano(ano):
             for item, subitens in dados_por_item.items()
         ]
     }
-#Fazendo a leitura em todos os anos
+#Fazendo a raspagem dos dados no periodo escolhido ou default 1970 a 2025
 
 
 def coletar_dados_producao(ano_inicio=1970,ano_fim=2025):

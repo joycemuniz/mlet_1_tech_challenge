@@ -57,11 +57,11 @@ def raspar_dados_por_ano(ano):
             for item, subitens in dados_por_item.items()
         ]
     }
-#Fazendo a leitura em todos os anos
+#Fazendo a raspagem dos dados no periodo escolhido ou default 1970 a 2025
 
-def coletar_dados_comercializacao():
+def coletar_dados_comercializacao(ano_inicio=1970,ano_fim=2025):
     dados_comercializacao_json = []
-    for ano in range(1970, 2025):
+    for ano in range(ano_inicio, ano_fim + 1):
         dados_ano = raspar_dados_por_ano(ano)
         if dados_ano:
             dados_comercializacao_json.append(dados_ano)
