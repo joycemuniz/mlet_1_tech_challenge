@@ -256,8 +256,7 @@ def get_dados_exportacao(categoria):
     data = coletar_dados_exportacao(subopcao, ano_inicio, ano_fim)
     return jsonify(data)
 
-'''if __name__ == '__main__':
+if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True)'''
-
+    app.run(debug=True)
