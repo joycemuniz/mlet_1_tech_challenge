@@ -135,7 +135,6 @@ Authorization: Bearer <access_token>
 | GET    | `/comercializacao`               | Retorna dados de comercialização por intervalo de anos.     |
 | GET    | `/importacao/{categoria}`        | Retorna dados de importação por categoria e ano.            |
 | GET    | `/exportacao/{categoria}`        | Retorna dados de exportação por categoria e ano.            |
-| POST   | `/register`                      | Registra novo usuário.                                      |
 | POST   | `/login`                         | Autentica usuário e retorna o JWT.                          |
 
 ---
@@ -194,10 +193,7 @@ GET /exportacao/espumantes?ano_inicio=1995&ano_fim=2005
 
 Acesse a documentação interativa da API em:
 
-```
-[https://mlet-1-tech-challenge.vercel.app/apidocs/](https://mlet-1-tech-challenge.vercel.app/apidocs/)
-
-```
+🔗 [https://mlet-1-tech-challenge.vercel.app/apidocs/](https://mlet-1-tech-challenge.vercel.app/apidocs/)
 
 ---
 
@@ -231,6 +227,7 @@ A aplicação está disponível em:
 
 ## 📈 Arquitetura do Projeto
 
+![arquitetura_tech_challenge_1](https://github.com/user-attachments/assets/f9ec0c80-88c0-48b8-9273-a8068a5c1321)
 
 
 ---
