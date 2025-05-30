@@ -1,7 +1,9 @@
-import aiohttp
-import asyncio
+import requests
 from bs4 import BeautifulSoup
+import json
+import time
 
+# URL base com o parâmetro de ano e opção
 BASE_URL = "http://vitibrasil.cnpuv.embrapa.br/index.php?ano={ano}&opcao=opt_02"
 
 # Função que limpa e transforma os valores
@@ -9,17 +11,21 @@ def parse_valor(valor_str):
     valor_str = valor_str.strip().replace(".", "").replace(",", "")
     return int(valor_str) if valor_str.isdigit() else None
 
-# Extrai os dados HTML para cada ano
-def extrair_dados_html(html, ano):
-    soup = BeautifulSoup(html, 'html.parser')
+# Função principal de raspagem para cada ano
+def raspar_dados_por_ano(ano):
+    url = BASE_URL.format(ano=ano)
+    response = requests.get(url)
+    response.encoding = "utf-8"
+    soup = BeautifulSoup(response.content, 'html.parser')
+    
     tabela = soup.find("table", class_="tb_base tb_dados")
     if not tabela:
-        return None
-
+        return None 
+    
     dados_por_item = {}
     linhas = tabela.find_all("tr")
+    
     item_atual = None
-
     for linha in linhas:
         colunas = linha.find_all("td")
         if len(colunas) != 2:
@@ -28,6 +34,7 @@ def extrair_dados_html(html, ano):
         nome = colunas[0].get_text(strip=True)
         valor = parse_valor(colunas[1].get_text())
 
+        # Detecta se é um novo item
         if "tb_item" in colunas[0].get("class", []):
             item_atual = nome
             if item_atual not in dados_por_item:
@@ -39,6 +46,7 @@ def extrair_dados_html(html, ano):
                     "quantidade_litros": valor
                 })
 
+    # Monta estrutura do json separado por ano e item
     return {
         "ano": ano,
         "itens": [
@@ -49,21 +57,14 @@ def extrair_dados_html(html, ano):
             for item, subitens in dados_por_item.items()
         ]
     }
+#Fazendo a leitura em todos os anos
 
-# Função assíncrona para buscar HTML
-async def fetch(session, ano):
-    url = BASE_URL.format(ano=ano)
-    async with session.get(url) as response:
-        html = await response.text()
-        return extrair_dados_html(html, ano)
 
-# Coletor assíncrono de dados
-async def coletar_dados_producao_async(ano_inicio=1970, ano_fim=2025):
-    async with aiohttp.ClientSession() as session:
-        tasks = [fetch(session, ano) for ano in range(ano_inicio, ano_fim + 1)]
-        resultados = await asyncio.gather(*tasks)
-        return [r for r in resultados if r is not None]
-
-# Interface síncrona para uso no Flask
-def coletar_dados_producao(ano_inicio=1970, ano_fim=2025):
-    return asyncio.run(coletar_dados_producao_async(ano_inicio, ano_fim))
+def coletar_dados_producao(ano_inicio=1970,ano_fim=2025):
+    dados_producao_json = []
+    for ano in range(ano_inicio, ano_fim + 1):
+        dados_ano = raspar_dados_por_ano(ano)
+        if dados_ano:
+            dados_producao_json.append(dados_ano)
+        time.sleep(0.005)
+    return dados_producao_json

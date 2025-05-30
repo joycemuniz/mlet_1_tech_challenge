@@ -1,22 +1,26 @@
-import aiohttp
-import asyncio
+import requests
 from bs4 import BeautifulSoup
+import time
 
-# URL base
+# URL base com o parâmetro de ano e subopcao
 BASE_URL = "http://vitibrasil.cnpuv.embrapa.br/index.php?ano={ano}&subopcao={subopcao}&opcao=opt_06"
 
-# Limpa e transforma os valores
+# Função que limpa e transforma os valores
 def parse_valor(valor_str):
     valor_str = valor_str.strip().replace(".", "").replace(",", "")
     if valor_str == "-" or valor_str == "":
         return None
     return int(valor_str)
 
-# Extrai dados HTML
-def extrair_dados_html(html, ano):
-    soup = BeautifulSoup(html, 'html.parser')
+# Função principal de raspagem para cada ano
+def raspar_dados_por_ano(ano, subopcao):
+    url = BASE_URL.format(ano=ano, subopcao=subopcao)
+    response = requests.get(url)
+    response.encoding = "utf-8"
+    soup = BeautifulSoup(response.content, 'html.parser')
+
     tabela = soup.find("table", class_="tb_base tb_dados")
-    if not tabela or not tabela.find("tbody"):
+    if not tabela:
         return None
 
     linhas = tabela.find("tbody").find_all("tr")
@@ -42,17 +46,12 @@ def extrair_dados_html(html, ano):
         "dados": dados
     }
 
-async def fetch(session, ano, subopcao):
-    url = BASE_URL.format(ano=ano, subopcao=subopcao)
-    async with session.get(url) as response:
-        html = await response.text()
-        return extrair_dados_html(html, ano)
-
-async def coletar_dados_exportacao_async(subopcao, ano_inicio=1970, ano_fim=2025):
-    async with aiohttp.ClientSession() as session:
-        tarefas = [fetch(session, ano, subopcao) for ano in range(ano_inicio, ano_fim + 1)]
-        resultados = await asyncio.gather(*tarefas)
-        return [res for res in resultados if res is not None]
-
+# Função para coletar dados em um intervalo de anos
 def coletar_dados_exportacao(subopcao, ano_inicio=1970, ano_fim=2025):
-    return asyncio.run(coletar_dados_exportacao_async(subopcao, ano_inicio, ano_fim))
+    dados_exportacao_json = []
+    for ano in range(ano_inicio, ano_fim + 1):
+        dados_ano = raspar_dados_por_ano(ano, subopcao)
+        if dados_ano:
+            dados_exportacao_json.append(dados_ano)
+        time.sleep(0.005) 
+    return dados_exportacao_json
