@@ -37,6 +37,7 @@ def home():
     return "Olá, seja bem vindo a API de dados Vitivinícolas!"
 
 @app.route('/producao', methods=['GET'])
+@jwt_required()
 def get_dados_producao_filtrado():
     """
     Consulta dados de produção. Para melhorar a performance utilize os parâmetros de datas.

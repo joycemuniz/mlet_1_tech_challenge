@@ -2,6 +2,7 @@ import aiohttp
 import asyncio
 from bs4 import BeautifulSoup
 
+# URL base
 BASE_URL = "http://vitibrasil.cnpuv.embrapa.br/index.php?ano={ano}&subopcao={subopcao}&opcao=opt_05"
 
 # Limpa e transforma os valores
@@ -11,7 +12,7 @@ def parse_valor(valor_str):
         return None
     return int(valor_str)
 
-# Função que extrai dados da tabela HTML
+# Extrai dados HTML
 def extrair_dados_html(html, ano):
     soup = BeautifulSoup(html, 'html.parser')
     tabela = soup.find("table", class_="tb_base tb_dados")
@@ -49,4 +50,9 @@ async def fetch(session, ano, subopcao):
 
 async def coletar_dados_importacao_async(subopcao, ano_inicio=1970, ano_fim=2025):
     async with aiohttp.ClientSession() as session:
-        tarefas = [fetch(session, ano, subopcao) for ano in range(ano_inicio, ano_fim + 1)]()
+        tarefas = [fetch(session, ano, subopcao) for ano in range(ano_inicio, ano_fim + 1)]
+        resultados = await asyncio.gather(*tarefas)
+        return [res for res in resultados if res is not None]
+
+def coletar_dados_importacao(subopcao, ano_inicio=1970, ano_fim=2025):
+    return asyncio.run(coletar_dados_importacao_async(subopcao, ano_inicio, ano_fim))
