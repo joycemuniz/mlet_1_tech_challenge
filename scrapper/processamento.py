@@ -1,31 +1,25 @@
-import requests
+import aiohttp
+import asyncio
 from bs4 import BeautifulSoup
-import json
-import time
 
-# URL base com o parâmetro de ano e opção
 BASE_URL = "http://vitibrasil.cnpuv.embrapa.br/index.php?ano={ano}&subopcao={subopcao}&opcao=opt_03"
 
-# Função que limpa e transforma os valores
+# Limpa e transforma os valores
 def parse_valor(valor_str):
     valor_str = valor_str.strip().replace(".", "").replace(",", "")
     return int(valor_str) if valor_str.isdigit() else None
 
-# Função principal de raspagem para cada ano
-def raspar_dados_por_ano(ano, subopcao):
-    url = BASE_URL.format(ano=ano, subopcao=subopcao)
-    response = requests.get(url)
-    response.encoding = "utf-8"
-    soup = BeautifulSoup(response.content, 'html.parser')
-    
+# Extrai os dados do HTML
+def extrair_dados_html(html, ano):
+    soup = BeautifulSoup(html, 'html.parser')
     tabela = soup.find("table", class_="tb_base tb_dados")
     if not tabela:
-        return None 
-    
+        return None
+
     dados_por_item = {}
     linhas = tabela.find_all("tr")
-    
     item_atual = None
+
     for linha in linhas:
         colunas = linha.find_all("td")
         if len(colunas) != 2:
@@ -34,7 +28,6 @@ def raspar_dados_por_ano(ano, subopcao):
         nome = colunas[0].get_text(strip=True)
         valor = parse_valor(colunas[1].get_text())
 
-        # Detecta se é um novo item
         if "tb_item" in colunas[0].get("class", []):
             item_atual = nome
             if item_atual not in dados_por_item:
@@ -46,7 +39,6 @@ def raspar_dados_por_ano(ano, subopcao):
                     "quantidade_kg": valor
                 })
 
-    # Monta estrutura do json separado por ano e item
     return {
         "ano": ano,
         "itens": [
@@ -57,13 +49,19 @@ def raspar_dados_por_ano(ano, subopcao):
             for item, subitens in dados_por_item.items()
         ]
     }
-#Fazendo a raspagem dos dados no periodo escolhido ou default 1970 a 2025
 
-def coletar_dados_processamento(subopcao, ano_inicio=1970,ano_fim=2025):
-    dados_processamento_json = []
-    for ano in range(ano_inicio, ano_fim + 1):
-        dados_ano = raspar_dados_por_ano(ano,subopcao)
-        if dados_ano:
-            dados_processamento_json.append(dados_ano)
-        time.sleep(1)
-    return dados_processamento_json
+# Requisição para cada ano
+async def fetch(session, ano, subopcao):
+    url = BASE_URL.format(ano=ano, subopcao=subopcao)
+    async with session.get(url) as response:
+        html = await response.text()
+        return extrair_dados_html(html, ano)
+
+async def coletar_dados_processamento_async(subopcao, ano_inicio=1970, ano_fim=2025):
+    async with aiohttp.ClientSession() as session:
+        tarefas = [fetch(session, ano, subopcao) for ano in range(ano_inicio, ano_fim + 1)]
+        resultados = await asyncio.gather(*tarefas)
+        return [r for r in resultados if r is not None]
+
+def coletar_dados_processamento(subopcao, ano_inicio=1970, ano_fim=2025):
+    return asyncio.run(coletar_dados_processamento_async(subopcao, ano_inicio, ano_fim))
