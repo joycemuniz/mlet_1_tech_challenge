@@ -89,23 +89,10 @@ python app.py
 
 A API exige autenticação via **JWT (JSON Web Token)** para acessar os endpoints protegidos.
 
-### 📥 Registro
-
-```http
-POST /register
-Content-Type: application/json
-```
-
-**Exemplo de corpo da requisição:**
-
-```json
-{
-  "username": "seu_usuario",
-  "password": "sua_senha"
-}
-```
 
 ### 🔐 Login
+
+Para a realização de login e obtenção do token utilize o usuário padrão "admin" e senha "admin".
 
 ```http
 POST /login
@@ -116,8 +103,8 @@ Content-Type: application/json
 
 ```json
 {
-  "username": "seu_usuario",
-  "password": "sua_senha"
+  "username": "admin",
+  "password": "admin"
 }
 ```
 
@@ -208,7 +195,8 @@ GET /exportacao/espumantes?ano_inicio=1995&ano_fim=2005
 Acesse a documentação interativa da API em:
 
 ```
-http://localhost:5000/apidocs/
+[https://mlet-1-tech-challenge.vercel.app/apidocs/](https://mlet-1-tech-challenge.vercel.app/apidocs/)
+
 ```
 
 ---
@@ -217,7 +205,7 @@ http://localhost:5000/apidocs/
 
 A aplicação está disponível em:
 
-🔗 [https://vitivinicultura-api.vercel.app](https://vitivinicultura-api.vercel.app)
+🔗 [https://mlet-1-tech-challenge.vercel.app/](https://mlet-1-tech-challenge.vercel.app/)
 
 ---
 
@@ -243,7 +231,7 @@ A aplicação está disponível em:
 
 ## 📈 Arquitetura do Projeto
 
-_(Inserir imagem ou diagrama de arquitetura aqui, se disponível)_
+
 
 ---
 

@@ -94,15 +94,6 @@ paths:
         '400':
           description: Categoria inválida ou erro de parâmetros.
 
-  /comercializacao/all:
-    get:
-      summary: Consulta completa de dados de comercialização
-      security:
-        - basicAuth: []
-      responses:
-        '200':
-          description: Todos os dados de comercialização.
-
   /comercializacao:
     get:
       summary: Consulta filtrada de dados de comercialização

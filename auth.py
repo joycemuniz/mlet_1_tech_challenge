@@ -20,26 +20,7 @@ class Users(db.Model):
 # Rota de registro
 @auth_bp.route('/register', methods=['POST'])
 def register_users():
-    """
-    Registro de novo usuário.
-    ---
-    parameters:
-      - in: body
-        name: body
-        required: true
-        schema:
-          type: object
-          properties:
-            username:
-              type: string
-            password:
-              type: string
-    responses:
-      201:
-        description: Usuário criado com sucesso
-      400:
-        description: Erro de entrada ou usuário já existe
-    """
+
     data = request.get_json()
     if not data or 'username' not in data or 'password' not in data:
         return jsonify({"error": "Dados inválidos"}), 400
