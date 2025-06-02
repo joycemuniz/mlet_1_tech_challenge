@@ -11,24 +11,18 @@ from scrapper.processamento import coletar_dados_processamento
 
 app = Flask(__name__)
 
-# Configuração do Swagger com autenticação JWT
 app.config['SWAGGER'] = {
     'title': 'API de Dados Vitivinícolas',
-    'uiversion': 3,
-    'securityDefinitions': {
-        'Bearer': {
-            'type': 'apiKey',
-            'name': 'Authorization',
-            'in': 'header',
-            'description': 'Token JWT no formato: **Bearer <seu_token>**'
-        }
-    }
+    'uiversion': 3
 }
 
 app.config.from_object(Config)
+
 db.init_app(app)
 jwt.init_app(app)
+
 app.register_blueprint(auth_bp, url_prefix='/auth')
+
 swagger = Swagger(app)
 
 @app.route('/')
@@ -48,8 +42,6 @@ def get_dados_producao_filtrado():
     """
     Consulta dados de produção. Para melhorar a performance utilize os parâmetros de datas.
     ---
-    security:
-      - Bearer: []
     parameters:
       - name: ano_inicio
         in: query
@@ -75,16 +67,14 @@ def get_dados_producao_filtrado():
         data = coletar_dados_producao(ano_inicio, ano_fim)
         return jsonify(data)
     except ValueError:
-        return jsonify({"erro": "Parâmetros de ano inválidos."}), 400
+        return jsonify({"erro": "Parâmetros de ano inválidos. Use inteiros para ano_inicio e ano_fim."}), 400
 
 @app.route('/processamento/<categoria>', methods=['GET'])
 @jwt_required()
 def get_dados_processamento(categoria):
     """
-    Consulta dados de processamento por categoria.
+    Consulta dados de processamento por categoria. Para melhorar a performance utilize também os parâmetros de datas.
     ---
-    security:
-      - Bearer: []
     parameters:
       - name: categoria
         in: path
@@ -117,7 +107,7 @@ def get_dados_processamento(categoria):
 
     subopcao = subopcao_map.get(categoria)
     if not subopcao:
-        return jsonify({"erro": "Categoria inválida."}), 400
+        return jsonify({"erro": "Categoria inválida. Use: viniferas, americanas_hibridas, uvas_mesa ou sem_classificacao"}), 400
 
     try:
         ano_inicio = int(request.args.get('ano_inicio', 1970))
@@ -125,7 +115,7 @@ def get_dados_processamento(categoria):
         if ano_inicio > ano_fim:
             return jsonify({"erro": "ano_inicio não pode ser maior que ano_fim"}), 400
     except ValueError:
-        return jsonify({"erro": "Parâmetros de ano inválidos."}), 400
+        return jsonify({"erro": "Parâmetros de ano inválidos. Use inteiros para ano_inicio e ano_fim."}), 400
 
     data = coletar_dados_processamento(subopcao, ano_inicio, ano_fim)
     return jsonify(data)
@@ -134,10 +124,8 @@ def get_dados_processamento(categoria):
 @jwt_required()
 def get_dados_comercializacao_2():
     """
-    Consulta de dados de comercialização.
+    Consulta de dados de comercialização. Para melhorar a performance utilize os parâmetros de datas.
     ---
-    security:
-      - Bearer: []
     parameters:
       - name: ano_inicio
         in: query
@@ -163,16 +151,14 @@ def get_dados_comercializacao_2():
         data = coletar_dados_comercializacao(ano_inicio, ano_fim)
         return jsonify(data)
     except ValueError:
-        return jsonify({"erro": "Parâmetros de ano inválidos."}), 400
+        return jsonify({"erro": "Parâmetros de ano inválidos. Use inteiros para ano_inicio e ano_fim."}), 400
 
 @app.route('/importacao/<categoria>', methods=['GET'])
 @jwt_required()
 def get_dados_importacao(categoria):
     """
-    Consulta dados de importação por categoria.
+    Consulta dados de importação por categoria. Para melhorar a performance utilize também os parâmetros de datas.
     ---
-    security:
-      - Bearer: []
     parameters:
       - name: categoria
         in: path
@@ -206,7 +192,7 @@ def get_dados_importacao(categoria):
 
     subopcao = subopcao_map.get(categoria)
     if not subopcao:
-        return jsonify({"erro": "Categoria inválida."}), 400
+        return jsonify({"erro": "Categoria inválida. Use: vinhos_mesa, espumantes, uvas_frescas, uvas_passas ou sucos"}), 400
 
     try:
         ano_inicio = int(request.args.get('ano_inicio', 1970))
@@ -214,7 +200,7 @@ def get_dados_importacao(categoria):
         if ano_inicio > ano_fim:
             return jsonify({"erro": "ano_inicio não pode ser maior que ano_fim"}), 400
     except ValueError:
-        return jsonify({"erro": "Parâmetros de ano inválidos."}), 400
+        return jsonify({"erro": "Parâmetros de ano inválidos. Use inteiros para ano_inicio e ano_fim."}), 400
 
     data = coletar_dados_importacao(subopcao, ano_inicio, ano_fim)
     return jsonify(data)
@@ -223,10 +209,8 @@ def get_dados_importacao(categoria):
 @jwt_required()
 def get_dados_exportacao(categoria):
     """
-    Consulta dados de exportação por categoria.
+    Consulta dados de exportação por categoria. Para melhorar a performance utilize também os parâmetros de datas.
     ---
-    security:
-      - Bearer: []
     parameters:
       - name: categoria
         in: path
@@ -259,7 +243,7 @@ def get_dados_exportacao(categoria):
 
     subopcao = subopcao_map.get(categoria)
     if not subopcao:
-        return jsonify({"erro": "Categoria inválida."}), 400
+        return jsonify({"erro": "Categoria inválida. Use: vinhos_mesa, espumantes, uvas_frescas ou sucos"}), 400
 
     try:
         ano_inicio = int(request.args.get('ano_inicio', 1970))
@@ -267,7 +251,7 @@ def get_dados_exportacao(categoria):
         if ano_inicio > ano_fim:
             return jsonify({"erro": "ano_inicio não pode ser maior que ano_fim"}), 400
     except ValueError:
-        return jsonify({"erro": "Parâmetros de ano inválidos."}), 400
+        return jsonify({"erro": "Parâmetros de ano inválidos. Use inteiros para ano_inicio e ano_fim."}), 400
 
     data = coletar_dados_exportacao(subopcao, ano_inicio, ano_fim)
     return jsonify(data)
