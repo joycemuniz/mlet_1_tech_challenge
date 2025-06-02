@@ -221,18 +221,11 @@ Foi desenvolvido um dashboard interativo com Power BI para visualização dos da
 
 
 ### 🔗 Acesso ao Relatório Online
-[Abrir no Power BI](https://app.powerbi.com/view?r=eyJrIjoiZmNmZmY0MDItOTUzZi00N2Q5LTk3NjYtZmVlNmUxOTkwZjExIiwidCI6IjExZGJiZmUyLTg5YjgtNDU0OS1iZTEwLWNlYzM2NGU1OTU1MSIsImMiOjR9)
+[Abrir no Power BI](https://app.powerbi.com/view?r=eyJrIjoiMjNhNjNlZTQtYjc1NC00NGE1LTk2YTctNWVlNjUzZTY4NTAxIiwidCI6IjExZGJiZmUyLTg5YjgtNDU0OS1iZTEwLWNlYzM2NGU1OTU1MSIsImMiOjR9)
 
 ### ▶️ Prévia
 
 ![ezgif com-speed (1)](https://github.com/user-attachments/assets/8b9477fa-1729-4bb2-823f-bf7be2edb082)
-
----
-
-## 🧠 Futuras Extensões
-
-- Cache dos dados em banco SQL ou NoSQL
-- Protótipo de modelo preditivo baseado nos dados coletados
 
 ---
 
@@ -246,3 +239,12 @@ Foi desenvolvido um dashboard interativo com Power BI para visualização dos da
 ## 🎥 Demonstração em Vídeo
 
 📽️ Link: [https://youtu.be/seu_video_demo](https://youtu.be/seu_video_demo) *(substituir pelo link real)*
+
+---
+
+## 🧠 Futuras Extensões
+
+- Cache dos dados em banco SQL ou NoSQL
+- Protótipo de modelo preditivo baseado nos dados coletados
+
+---
