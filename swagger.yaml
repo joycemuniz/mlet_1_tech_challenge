@@ -7,7 +7,7 @@ info:
 
     Site oficial: http://vitibrasil.cnpuv.embrapa.br/
 
-    Todas as rotas exigem autenticação básica.
+    Todas as rotas exigem autenticação via JWT.
 
     **Integrantes:**
     - Joyce Muniz de Oliveira | RM: 364278 | joyce.muniz@hotmail.com
@@ -22,13 +22,17 @@ servers:
   - url: http://localhost:5000
 
 security:
-  - basicAuth: []
+  - BearerAuth: []
 
 components:
   securitySchemes:
-    basicAuth:
+    BearerAuth:
       type: http
-      scheme: basic
+      scheme: bearer
+      bearerFormat: JWT
+      description: >
+        Use o token JWT gerado no login.
+        Exemplo: **Bearer &lt;seu_token&gt;**
 
   parameters:
     AnoInicio:
@@ -53,8 +57,6 @@ paths:
   /:
     get:
       summary: Endpoint principal
-      security:
-        - basicAuth: []
       responses:
         '200':
           description: Retorna mensagem de boas-vindas.
@@ -63,7 +65,7 @@ paths:
     get:
       summary: Consulta dados de produção filtrados
       security:
-        - basicAuth: []
+        - BearerAuth: []
       parameters:
         - $ref: '#/components/parameters/AnoInicio'
         - $ref: '#/components/parameters/AnoFim'
@@ -77,7 +79,7 @@ paths:
     get:
       summary: Consulta dados de processamento por categoria
       security:
-        - basicAuth: []
+        - BearerAuth: []
       parameters:
         - name: categoria
           in: path
@@ -98,7 +100,7 @@ paths:
     get:
       summary: Consulta filtrada de dados de comercialização
       security:
-        - basicAuth: []
+        - BearerAuth: []
       parameters:
         - $ref: '#/components/parameters/AnoInicio'
         - $ref: '#/components/parameters/AnoFim'
@@ -112,7 +114,7 @@ paths:
     get:
       summary: Consulta dados de importação por categoria
       security:
-        - basicAuth: []
+        - BearerAuth: []
       parameters:
         - name: categoria
           in: path
@@ -133,7 +135,7 @@ paths:
     get:
       summary: Consulta dados de exportação por categoria
       security:
-        - basicAuth: []
+        - BearerAuth: []
       parameters:
         - name: categoria
           in: path
