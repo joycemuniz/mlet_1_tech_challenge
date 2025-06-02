@@ -1,0 +1,533 @@
+{
+	"info": {
+		"_postman_id": "a8409ff0-e1a0-44f4-8b2a-6a019d2eab8a",
+		"name": "Ambiente Vercel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45062968"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/auth/register",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/auth/login",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "producao",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODY0MjI4NiwianRpIjoiNmNkZDhkZTUtNjY4Zi00ZDIyLTlmZGMtODc2NmM0YTY0ZTZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NDg2NDIyODYsImNzcmYiOiJjYTlmZjhlNC1iMzkyLTQyNjgtOGUzNC00NDk2MTg1MWVkOWUiLCJleHAiOjE3NDg2NTY2ODZ9.hhfRuqtt1-pL5tFsAFrAaRXsyGLPFmwYRiJ4737pxYY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/producao",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"producao"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "comercializacao",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODYzOTUyMywianRpIjoiNzg2MTM5YzYtODU4Yi00YzVmLWI1MDQtMzkxZWM1ZWUzZmMyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg2Mzk1MjMsImNzcmYiOiJlNjk5NjczOS0zZGI0LTRkZDUtYjRhMS1mMTQ0ZTk0MTE1NjciLCJleHAiOjE3NDg2NTM5MjN9.NNujrIDGHIMPNppGL2N3PZQ9sBhHUeQynD8AvvdeAOA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/comercializacao",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"comercializacao"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "processamento/viniferas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODYzOTUyMywianRpIjoiNzg2MTM5YzYtODU4Yi00YzVmLWI1MDQtMzkxZWM1ZWUzZmMyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg2Mzk1MjMsImNzcmYiOiJlNjk5NjczOS0zZGI0LTRkZDUtYjRhMS1mMTQ0ZTk0MTE1NjciLCJleHAiOjE3NDg2NTM5MjN9.NNujrIDGHIMPNppGL2N3PZQ9sBhHUeQynD8AvvdeAOA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/processamento/viniferas",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"processamento",
+						"viniferas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "processamento/americanas_hibridas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODYzOTUyMywianRpIjoiNzg2MTM5YzYtODU4Yi00YzVmLWI1MDQtMzkxZWM1ZWUzZmMyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NDg2Mzk1MjMsImNzcmYiOiJlNjk5NjczOS0zZGI0LTRkZDUtYjRhMS1mMTQ0ZTk0MTE1NjciLCJleHAiOjE3NDg2NTM5MjN9.NNujrIDGHIMPNppGL2N3PZQ9sBhHUeQynD8AvvdeAOA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/processamento/americanas_hibridas",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"processamento",
+						"americanas_hibridas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "processamento/uvas_mesa",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODY0MjI4NiwianRpIjoiNmNkZDhkZTUtNjY4Zi00ZDIyLTlmZGMtODc2NmM0YTY0ZTZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NDg2NDIyODYsImNzcmYiOiJjYTlmZjhlNC1iMzkyLTQyNjgtOGUzNC00NDk2MTg1MWVkOWUiLCJleHAiOjE3NDg2NTY2ODZ9.hhfRuqtt1-pL5tFsAFrAaRXsyGLPFmwYRiJ4737pxYY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/processamento/uvas_mesa",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"processamento",
+						"uvas_mesa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "processamento/sem_classificacao",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODY0MjI4NiwianRpIjoiNmNkZDhkZTUtNjY4Zi00ZDIyLTlmZGMtODc2NmM0YTY0ZTZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NDg2NDIyODYsImNzcmYiOiJjYTlmZjhlNC1iMzkyLTQyNjgtOGUzNC00NDk2MTg1MWVkOWUiLCJleHAiOjE3NDg2NTY2ODZ9.hhfRuqtt1-pL5tFsAFrAaRXsyGLPFmwYRiJ4737pxYY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/processamento/sem_classificacao",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"processamento",
+						"sem_classificacao"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "importacao/vinhos_mesa",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODY0MjI4NiwianRpIjoiNmNkZDhkZTUtNjY4Zi00ZDIyLTlmZGMtODc2NmM0YTY0ZTZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NDg2NDIyODYsImNzcmYiOiJjYTlmZjhlNC1iMzkyLTQyNjgtOGUzNC00NDk2MTg1MWVkOWUiLCJleHAiOjE3NDg2NTY2ODZ9.hhfRuqtt1-pL5tFsAFrAaRXsyGLPFmwYRiJ4737pxYY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/importacao/vinhos_mesa",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"importacao",
+						"vinhos_mesa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "importacao/espumantes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODY0MjI4NiwianRpIjoiNmNkZDhkZTUtNjY4Zi00ZDIyLTlmZGMtODc2NmM0YTY0ZTZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NDg2NDIyODYsImNzcmYiOiJjYTlmZjhlNC1iMzkyLTQyNjgtOGUzNC00NDk2MTg1MWVkOWUiLCJleHAiOjE3NDg2NTY2ODZ9.hhfRuqtt1-pL5tFsAFrAaRXsyGLPFmwYRiJ4737pxYY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/importacao/espumantes",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"importacao",
+						"espumantes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "importacao/uvas_frescas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODY0MjI4NiwianRpIjoiNmNkZDhkZTUtNjY4Zi00ZDIyLTlmZGMtODc2NmM0YTY0ZTZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NDg2NDIyODYsImNzcmYiOiJjYTlmZjhlNC1iMzkyLTQyNjgtOGUzNC00NDk2MTg1MWVkOWUiLCJleHAiOjE3NDg2NTY2ODZ9.hhfRuqtt1-pL5tFsAFrAaRXsyGLPFmwYRiJ4737pxYY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/importacao/uvas_frescas",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"importacao",
+						"uvas_frescas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "importacao/uvas_passas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODY0MjI4NiwianRpIjoiNmNkZDhkZTUtNjY4Zi00ZDIyLTlmZGMtODc2NmM0YTY0ZTZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NDg2NDIyODYsImNzcmYiOiJjYTlmZjhlNC1iMzkyLTQyNjgtOGUzNC00NDk2MTg1MWVkOWUiLCJleHAiOjE3NDg2NTY2ODZ9.hhfRuqtt1-pL5tFsAFrAaRXsyGLPFmwYRiJ4737pxYY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/importacao/uvas_passas",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"importacao",
+						"uvas_passas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "importacao/sucos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODY0MjI4NiwianRpIjoiNmNkZDhkZTUtNjY4Zi00ZDIyLTlmZGMtODc2NmM0YTY0ZTZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NDg2NDIyODYsImNzcmYiOiJjYTlmZjhlNC1iMzkyLTQyNjgtOGUzNC00NDk2MTg1MWVkOWUiLCJleHAiOjE3NDg2NTY2ODZ9.hhfRuqtt1-pL5tFsAFrAaRXsyGLPFmwYRiJ4737pxYY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/importacao/sucos",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"importacao",
+						"sucos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "exportacao/vinhos_mesa",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODY0MjI4NiwianRpIjoiNmNkZDhkZTUtNjY4Zi00ZDIyLTlmZGMtODc2NmM0YTY0ZTZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NDg2NDIyODYsImNzcmYiOiJjYTlmZjhlNC1iMzkyLTQyNjgtOGUzNC00NDk2MTg1MWVkOWUiLCJleHAiOjE3NDg2NTY2ODZ9.hhfRuqtt1-pL5tFsAFrAaRXsyGLPFmwYRiJ4737pxYY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/exportacao/vinhos_mesa",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"exportacao",
+						"vinhos_mesa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "exportacao/espumantes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODY0MjI4NiwianRpIjoiNmNkZDhkZTUtNjY4Zi00ZDIyLTlmZGMtODc2NmM0YTY0ZTZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NDg2NDIyODYsImNzcmYiOiJjYTlmZjhlNC1iMzkyLTQyNjgtOGUzNC00NDk2MTg1MWVkOWUiLCJleHAiOjE3NDg2NTY2ODZ9.hhfRuqtt1-pL5tFsAFrAaRXsyGLPFmwYRiJ4737pxYY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/exportacao/espumantes",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"exportacao",
+						"espumantes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "exportacao/uvas_frescas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODY0MjI4NiwianRpIjoiNmNkZDhkZTUtNjY4Zi00ZDIyLTlmZGMtODc2NmM0YTY0ZTZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NDg2NDIyODYsImNzcmYiOiJjYTlmZjhlNC1iMzkyLTQyNjgtOGUzNC00NDk2MTg1MWVkOWUiLCJleHAiOjE3NDg2NTY2ODZ9.hhfRuqtt1-pL5tFsAFrAaRXsyGLPFmwYRiJ4737pxYY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/exportacao/uvas_frescas",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"exportacao",
+						"uvas_frescas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "exportacao/sucos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0ODY0MjI4NiwianRpIjoiNmNkZDhkZTUtNjY4Zi00ZDIyLTlmZGMtODc2NmM0YTY0ZTZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NDg2NDIyODYsImNzcmYiOiJjYTlmZjhlNC1iMzkyLTQyNjgtOGUzNC00NDk2MTg1MWVkOWUiLCJleHAiOjE3NDg2NTY2ODZ9.hhfRuqtt1-pL5tFsAFrAaRXsyGLPFmwYRiJ4737pxYY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mlet-1-tech-challenge.vercel.app/exportacao/sucos",
+					"protocol": "https",
+					"host": [
+						"mlet-1-tech-challenge",
+						"vercel",
+						"app"
+					],
+					"path": [
+						"exportacao",
+						"sucos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
