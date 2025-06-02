@@ -215,13 +215,24 @@ A aplicação está disponível em:
 | **Victor Rodrigues Linhati**| 363151  | [victor_linhati@hotmail.com](mailto:victor_linhati@hotmail.com) |
 
 ---
+## 📊 Dashboard Vitivinícola
+
+Foi desenvolvido um dashboard interativo com Power BI para visualização dos dados.
+
+
+### 🔗 Acesso ao Relatório Online
+[Abrir no Power BI](https://app.powerbi.com/view?r=eyJrIjoiZmNmZmY0MDItOTUzZi00N2Q5LTk3NjYtZmVlNmUxOTkwZjExIiwidCI6IjExZGJiZmUyLTg5YjgtNDU0OS1iZTEwLWNlYzM2NGU1OTU1MSIsImMiOjR9)
+
+### ▶️ Prévia
+
+![ezgif com-speed (1)](https://github.com/user-attachments/assets/8b9477fa-1729-4bb2-823f-bf7be2edb082)
+
+---
 
 ## 🧠 Futuras Extensões
 
 - Cache dos dados em banco SQL ou NoSQL
-- Dashboard interativo no Power BI
 - Protótipo de modelo preditivo baseado nos dados coletados
-- Observabilidade com logs estruturados
 
 ---
 
