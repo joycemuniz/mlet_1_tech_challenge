@@ -238,7 +238,7 @@ Foi desenvolvido um dashboard interativo com Power BI para visualização dos da
 
 ## 🎥 Demonstração em Vídeo
 
-📽️ Link: [https://youtu.be/seu_video_demo](https://youtu.be/seu_video_demo) *(substituir pelo link real)*
+📽️ Link: [https://youtu.be/mxHJs2zwjgo](https://youtu.be/mxHJs2zwjgo)
 
 ---
 
